@@ -34,8 +34,8 @@ The app is built using the MVI (Model-View-Intent) architecture:
 
 1. **Clone the repository**:
     ```bash
-    git clone https://github.com/yourusername/news-reader-app.git
-    cd news-reader-app
+    git clone https://github.com/essameldeen/NewsReaderTask.git
+ 
     ```
 
 2. **Open in Android Studio**:
@@ -58,6 +58,3 @@ The app is built using the MVI (Model-View-Intent) architecture:
 
 Contributions are welcome! Please open an issue or submit a pull request.
 
-## License
-
-This project is licensed under the MIT License.

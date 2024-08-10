@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -7,9 +9,19 @@ plugins {
 
 }
 
+
 android {
     namespace = "com.example.newsreader"
     compileSdk = 34
+
+    val secretsPropertiesFile = rootProject.file("secrets.properties")
+    val secretsProperties = Properties().apply {
+        if (secretsPropertiesFile.exists()) {
+            load(secretsPropertiesFile.inputStream())
+        }
+    }
+
+    val apiKey = secretsProperties["API_KEY"]?.toString() ?: ""
 
     defaultConfig {
         applicationId = "com.example.newsreader"
@@ -22,6 +34,7 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+        buildConfigField("String", "API_KEY", "\"${apiKey}\"")
     }
 
     buildTypes {
@@ -42,6 +55,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.7"
@@ -109,15 +123,15 @@ dependencies {
     implementation(libs.androidx.room.ktx)
 
     //testing
-    testImplementation  ("androidx.test:core:1.5.0")
-    testImplementation  ("junit:junit:4.13.2")
-    testImplementation  ("androidx.arch.core:core-testing:2.2.0")
-    testImplementation  ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
-    testImplementation  ("com.google.truth:truth:1.1.3")
-    testImplementation  ("com.squareup.okhttp3:mockwebserver:4.9.1")
-    testImplementation  ("io.mockk:mockk:1.13.1")
-    testImplementation  ("app.cash.turbine:turbine:0.7.0")
-    debugImplementation ("androidx.compose.ui:ui-test-manifest:1.6.7")
+    testImplementation("androidx.test:core:1.5.0")
+    testImplementation("junit:junit:4.13.2")
+    testImplementation("androidx.arch.core:core-testing:2.2.0")
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
+    testImplementation("com.google.truth:truth:1.1.3")
+    testImplementation("com.squareup.okhttp3:mockwebserver:4.9.1")
+    testImplementation("io.mockk:mockk:1.13.1")
+    testImplementation("app.cash.turbine:turbine:0.7.0")
+    debugImplementation("androidx.compose.ui:ui-test-manifest:1.6.7")
 
-    testImplementation ("org.mockito.kotlin:mockito-kotlin:5.4.0")
+    testImplementation("org.mockito.kotlin:mockito-kotlin:5.4.0")
 }
