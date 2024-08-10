@@ -123,15 +123,13 @@ dependencies {
     implementation(libs.androidx.room.ktx)
 
     //testing
-    testImplementation("androidx.test:core:1.5.0")
-    testImplementation("junit:junit:4.13.2")
-    testImplementation("androidx.arch.core:core-testing:2.2.0")
-    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
-    testImplementation("com.google.truth:truth:1.1.3")
-    testImplementation("com.squareup.okhttp3:mockwebserver:4.9.1")
-    testImplementation("io.mockk:mockk:1.13.1")
-    testImplementation("app.cash.turbine:turbine:0.7.0")
-    debugImplementation("androidx.compose.ui:ui-test-manifest:1.6.7")
 
+    testImplementation  ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
+    testImplementation  ("io.mockk:mockk:1.13.1")
+    testImplementation ("org.mockito.kotlin:mockito-kotlin:5.4.0")
+    testImplementation("androidx.test:core:1.5.0")
+    testImplementation("com.google.truth:truth:1.1.3")
     testImplementation("org.mockito.kotlin:mockito-kotlin:5.4.0")
+    testImplementation ("org.mockito:mockito-core:3.11.2")
+    testImplementation ("org.mockito:mockito-inline:3.11.2")
 }

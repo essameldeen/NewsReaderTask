@@ -1,9 +1,5 @@
 package com.example.newsreader.data.repository
 
-import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
-import android.os.Build
 import com.example.newsreader.data.dataSource.local.NewsDao
 import com.example.newsreader.data.dataSource.remote.api.NewsApiService
 import com.example.newsreader.data.manager.InternetManager
@@ -17,10 +13,10 @@ import javax.inject.Inject
 class NewsRepositoryImpl @Inject constructor(
     private val api: NewsApiService,
     private val newsDao: NewsDao,
-    private val networkManager: InternetManager
+    private val internetManager: InternetManager
 ) : NewsRepository {
     override suspend fun getNews(searchQuery: String): List<Article> {
-        return if (networkManager.checkNetwork()) {
+        return if (internetManager.checkNetwork()) {
             val response = api.getNews(searchQuery)
             val articles = response.articles
 
@@ -40,7 +36,7 @@ class NewsRepositoryImpl @Inject constructor(
 
 
     override suspend fun searchForNews(searchQuery: String): List<Article> {
-        return if (networkManager.checkNetwork()) {
+        return if (internetManager.checkNetwork()) {
             val response = api.getNews(searchQuery)
             val articles = response.articles
             newsDao.insertArticles(articles.map { it.toEntity() })

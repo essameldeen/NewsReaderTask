@@ -10,6 +10,7 @@ import org.junit.Test
 
 class BookMarkUseCaseTest{
     private lateinit var bookMarkUseCase: BookMarkUseCase
+
     private val repository: NewsRepository = mockk(relaxed = true)
 
     @Before
