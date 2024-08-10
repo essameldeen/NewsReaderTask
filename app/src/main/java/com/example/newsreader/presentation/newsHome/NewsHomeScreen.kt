@@ -8,8 +8,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.width
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -38,11 +36,11 @@ fun NewsHomeScreen(
             .statusBarsPadding()
     ) {
         Image(
-            painter = painterResource(id = R.drawable.ic_logo),
+            painter = painterResource(id = R.drawable.ic_news_logo),
             contentDescription = "Logo",
             modifier = Modifier
-                .width(150.dp)
-                .height(30.dp)
+                .width(200.dp)
+                .height(50.dp)
                 .padding(horizontal = MediumPadding1)
         )
         Spacer(modifier = Modifier.height(MediumPadding1))
