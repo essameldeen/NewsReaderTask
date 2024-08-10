@@ -9,4 +9,7 @@ sealed class Route(
      object NewsNavigation : Route("newsNavigation")
      object NewsNavigatorScreen : Route("newsNavigatorScreen")
 
+    object SearchScreen : Route("searchScreen")
+    object BookMarkScreen : Route("bookMarkScreen")
+    object DetailsScreen : Route("detailsScreen")
 }

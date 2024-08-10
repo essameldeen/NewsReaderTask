@@ -21,8 +21,8 @@ import androidx.compose.ui.Modifier
 import com.example.newsreader.domain.models.pages
 import com.example.newsreader.presentation.commonCompose.NewsButton
 import com.example.newsreader.presentation.commonCompose.NewsTextButton
-import com.example.newsreader.presentation.onBoarding.component.OnBoardingPage
-import com.example.newsreader.presentation.onBoarding.component.PageIndicator
+import com.example.newsreader.presentation.onBoarding.components.OnBoardingPage
+import com.example.newsreader.presentation.onBoarding.components.PageIndicator
 import com.example.newsreader.utils.Dimens.MediumPadding2
 import com.example.newsreader.utils.Dimens.PageIndicatorWidth
 import com.example.newsreader.utils.NewsConstant.BACK

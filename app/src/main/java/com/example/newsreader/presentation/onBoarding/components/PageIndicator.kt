@@ -1,4 +1,4 @@
-package com.example.newsreader.presentation.onBoarding.component
+package com.example.newsreader.presentation.onBoarding.components
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

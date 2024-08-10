@@ -1,6 +1,5 @@
-package com.example.newsreader.presentation.onBoarding.component
+package com.example.newsreader.presentation.onBoarding.components
 
-import android.content.res.Configuration
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
