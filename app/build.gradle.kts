@@ -124,12 +124,11 @@ dependencies {
 
     //testing
 
-    testImplementation  ("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4")
-    testImplementation  ("io.mockk:mockk:1.13.1")
-    testImplementation ("org.mockito.kotlin:mockito-kotlin:5.4.0")
-    testImplementation("androidx.test:core:1.5.0")
-    testImplementation("com.google.truth:truth:1.1.3")
-    testImplementation("org.mockito.kotlin:mockito-kotlin:5.4.0")
-    testImplementation ("org.mockito:mockito-core:3.11.2")
-    testImplementation ("org.mockito:mockito-inline:3.11.2")
+    testImplementation(libs.kotlinx.coroutines.test)
+    testImplementation(libs.mockk)
+    testImplementation(libs.androidx.core)
+    testImplementation(libs.truth)
+    testImplementation(libs.mockito.kotlin)
+    testImplementation(libs.mockito.core)
+    testImplementation(libs.mockito.inline)
 }
