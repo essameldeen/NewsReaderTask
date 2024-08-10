@@ -23,8 +23,8 @@ interface NewsDao {
     @Query("SELECT * FROM articles WHERE isBookmarked = 1")
     suspend fun getAllBookmarkedArticles(): List<ArticleEntity>
 
-    @Query("UPDATE articles SET isBookmarked = :isBookmarked WHERE id = :articleId")
-    suspend fun updateBookmarkStatus(articleId: Int, isBookmarked: Boolean)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun upsert(article: ArticleEntity)
 
 }
 

@@ -46,3 +46,18 @@ fun ArticleEntity.toDomainModel(): Article {
 
     )
 }
+
+fun Article.ArticleEntity(): ArticleEntity {
+    return ArticleEntity(
+        title = title,
+        source = source,
+        publishedAt = publishedAt,
+        content = content,
+        url = url,
+        urlToImage = urlToImage,
+        author = author,
+        description = description,
+        isBookmarked = isBookmarked
+
+    )
+}

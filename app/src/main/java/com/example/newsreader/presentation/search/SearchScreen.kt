@@ -15,6 +15,7 @@ import androidx.paging.compose.collectAsLazyPagingItems
 import androidx.room.util.query
 import com.example.newsreader.domain.models.Article
 import com.example.newsreader.presentation.commonCompose.ArticleList
+import com.example.newsreader.presentation.commonCompose.EmptyScreen
 import com.example.newsreader.presentation.commonCompose.SearchBar
 import com.example.newsreader.presentation.commonCompose.ShimmerEffect
 import com.example.newsreader.utils.Dimens.MediumPadding1
@@ -59,13 +60,12 @@ fun SearchScreen(
                     modifier = Modifier.padding(horizontal = MediumPadding1),
                     articles = viewState.articles!!
                 ) { article ->
-                    navigateToDetails(article.urlToImage )
+                    navigateToDetails(article.urlToImage)
                 }
             }
 
-            viewState.selectedArticleId != null -> {}//handle details screen
             viewState.error != null -> {
-                Text("Error: ${viewState.error}")
+                EmptyScreen(viewState.error)
             }
         }
 

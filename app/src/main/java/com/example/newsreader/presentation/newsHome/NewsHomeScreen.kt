@@ -18,6 +18,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.newsreader.R
 import com.example.newsreader.presentation.commonCompose.ArticleList
+import com.example.newsreader.presentation.commonCompose.EmptyScreen
 import com.example.newsreader.presentation.commonCompose.SearchBar
 import com.example.newsreader.presentation.commonCompose.ShimmerEffect
 import com.example.newsreader.utils.Dimens.MediumPadding1
@@ -70,9 +71,8 @@ fun NewsHomeScreen(
                 }
             }
 
-            viewState.selectedArticle != null -> {}//handle details screen
             viewState.error != null -> {
-                Text("Error: ${viewState.error}")
+                EmptyScreen(viewState.error)
             }
         }
 

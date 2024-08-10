@@ -28,7 +28,7 @@ class LocalUserManagerImpl(
     }
 }
 
-private val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = USER_SETTINGS)
+val Context.dataStore: DataStore<Preferences> by preferencesDataStore(name = USER_SETTINGS)
 
 private object PreferencesKeys {
     val APP_ENTRY = booleanPreferencesKey(name = NewsConstant.APP_ENTRY)

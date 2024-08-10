@@ -2,6 +2,7 @@ package com.example.newsreader.presentation.newsDetails
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.newsreader.domain.useCase.BookMarkUseCase
 import com.example.newsreader.domain.useCase.GetNewsByIdUseCase
 import com.example.newsreader.domain.useCase.UnBookMarkUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,22 +14,20 @@ import javax.inject.Inject
 @HiltViewModel
 class NewsDetailsViewModel @Inject constructor(
     private val getNewsByIdUseCase: GetNewsByIdUseCase,
-    private val bookMarkUseCase: UnBookMarkUseCase,
+    private val bookMarkUseCase: BookMarkUseCase,
     private val unBookMarkUseCase: UnBookMarkUseCase
 
 ) : ViewModel() {
 
-
     private val _viewState = MutableStateFlow(DetailsViewState())
     val viewState: StateFlow<DetailsViewState> = _viewState
-
 
     fun handleIntent(intent: DetailsIntent) {
         when (intent) {
             is DetailsIntent.LoadArticleDetails -> loadArticleDetails(intent.articleId)
-            DetailsIntent.BookmarkArticle -> if (_viewState.value.isBookmarked) unBookmarkArticle() else bookmarkArticle()
-
-            DetailsIntent.UnBookmarkArticle -> unBookmarkArticle()
+            DetailsIntent.ToggleBookmarkArticle -> if (_viewState.value.isBookmarked){
+                unBookmarkArticle()
+            } else bookmarkArticle()
         }
     }
 
@@ -46,8 +45,12 @@ class NewsDetailsViewModel @Inject constructor(
     fun bookmarkArticle() {
         viewModelScope.launch {
             _viewState.value.article?.let { article ->
-                bookMarkUseCase.invoke(article.id ?: 0)
-                _viewState.value = _viewState.value.copy(isBookmarked = true, article = article.copy(isBookmarked = true))
+                val newArticle = article.copy(isBookmarked = true)
+                bookMarkUseCase.invoke(newArticle)
+                _viewState.value = _viewState.value.copy(
+                    isBookmarked = true,
+                    article = article.copy(isBookmarked = true)
+                )
             }
         }
     }
@@ -55,8 +58,12 @@ class NewsDetailsViewModel @Inject constructor(
     fun unBookmarkArticle() {
         viewModelScope.launch {
             _viewState.value.article?.let { article ->
-                unBookMarkUseCase.invoke(article.id ?: 0)
-                _viewState.value = _viewState.value.copy(isBookmarked = false, article = article.copy(isBookmarked = false))
+                val newArticle = article.copy(isBookmarked = false)
+                unBookMarkUseCase.invoke(newArticle)
+                _viewState.value = _viewState.value.copy(
+                    isBookmarked = false,
+                    article = article.copy(isBookmarked = false)
+                )
             }
         }
     }

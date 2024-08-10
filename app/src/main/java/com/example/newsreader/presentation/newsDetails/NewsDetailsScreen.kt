@@ -25,10 +25,13 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.newsreader.R
 import com.example.newsreader.domain.models.Article
+import com.example.newsreader.presentation.commonCompose.EmptyScreen
 import com.example.newsreader.presentation.commonCompose.ShimmerEffect
 import com.example.newsreader.presentation.newsDetails.component.DetailsTopBar
 import com.example.newsreader.utils.Dimens.ArticleImageHeight
 import com.example.newsreader.utils.Dimens.MediumPadding1
+import com.example.newsreader.utils.NewsConstant.NOT_AVAILABLE
+import com.example.newsreader.utils.NewsConstant.TEXT_PLAIN
 
 @Composable
 fun NewsDetailsScreen(
@@ -41,7 +44,7 @@ fun NewsDetailsScreen(
     val viewState by viewModel.viewState.collectAsState()
 
     when {
-        viewState.isLoading -> repeat(1) {
+        viewState.isLoading -> repeat(10) {
             ShimmerEffect()
         }
 
@@ -56,7 +59,7 @@ fun NewsDetailsScreen(
         }
 
         viewState.error != null -> {
-            Text("Error: ${viewState.error}")
+            EmptyScreen(viewState.error)
         }
     }
 
@@ -84,11 +87,11 @@ fun DetailsArticle(
                 }
             }
         }, onBookMarkClick = {
-            handleIntent(DetailsIntent.BookmarkArticle)
+            handleIntent(DetailsIntent.ToggleBookmarkArticle)
         }, onShareClick = {
             Intent(Intent.ACTION_SEND).also {
                 it.putExtra(Intent.EXTRA_TEXT, article?.url)
-                it.type = "text/plain"
+                it.type = TEXT_PLAIN
                 if (it.resolveActivity(context.packageManager) != null) {
                     context.startActivity(it)
                 }
@@ -117,14 +120,14 @@ fun DetailsArticle(
                 Spacer(modifier = Modifier.height(MediumPadding1))
 
                 Text(
-                    text = article?.title ?: "Not Available",
+                    text = article?.title ?: NOT_AVAILABLE,
                     style = MaterialTheme.typography.displaySmall,
                     color = colorResource(
                         id = R.color.text_title
                     )
                 )
                 Text(
-                    text = article?.content ?: "",
+                    text = article?.content ?: NOT_AVAILABLE,
                     style = MaterialTheme.typography.bodyMedium,
                     color = colorResource(
                         id = R.color.body

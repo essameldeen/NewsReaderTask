@@ -12,8 +12,7 @@ data class DetailsViewState(
 sealed class DetailsIntent {
     data class LoadArticleDetails(val articleId: String) : DetailsIntent()
 
+object ToggleBookmarkArticle : DetailsIntent()
 
-    object BookmarkArticle : DetailsIntent()
-    object UnBookmarkArticle : DetailsIntent()
 
 }

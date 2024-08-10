@@ -1,10 +1,6 @@
 package com.example.newsreader.domain.repository
 
 import com.example.newsreader.domain.models.Article
-import com.example.newsreader.domain.models.ArticleDetails
-import com.example.newsreader.domain.models.ArticleListing
-import com.example.newsreader.utils.Resource
-import kotlinx.coroutines.flow.Flow
 
 interface NewsRepository {
     suspend fun getNews(
@@ -23,6 +19,6 @@ interface NewsRepository {
 
     suspend fun isArticleBookmarked(articleId: String): Boolean
 
-    suspend fun unBookMarkArticle(articleId: Int)
-    suspend fun bookMarkArticle(articleId: Int)
+    suspend fun unBookMarkArticle(article: Article)
+    suspend fun bookMarkArticle(article: Article)
 }

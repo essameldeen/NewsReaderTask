@@ -26,7 +26,6 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.newsreader.R
 import com.example.newsreader.domain.models.Article
-import com.example.newsreader.domain.models.ArticleListing
 import com.example.newsreader.utils.Dimens.ExtraSmallPadding
 import com.example.newsreader.utils.Dimens.ExtraSmallPadding2
 import com.example.newsreader.utils.Dimens.SmallIconSize

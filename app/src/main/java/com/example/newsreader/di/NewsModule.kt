@@ -5,6 +5,8 @@ import androidx.room.Room
 import com.example.newsreader.data.dataSource.local.NewsDao
 import com.example.newsreader.data.dataSource.local.NewsDataBase
 import com.example.newsreader.data.dataSource.remote.api.NewsApiService
+import com.example.newsreader.data.manager.InternetManager
+import com.example.newsreader.data.manager.InternetManagerImpl
 import com.example.newsreader.data.manager.LocalUserManagerImpl
 import com.example.newsreader.data.repository.NewsRepositoryImpl
 import com.example.newsreader.domain.manager.LocalUserManager
@@ -33,6 +35,11 @@ object NewsDomainModule {
     @Singleton
     fun provideLocalUserManager(application: Application): LocalUserManager =
         LocalUserManagerImpl(application)
+
+    @Provides
+    @Singleton
+    fun provideInternetManager(application: Application): InternetManager =
+        InternetManagerImpl(application)
 
 
     @Provides
@@ -67,10 +74,10 @@ object NewsDomainModule {
     fun provideNewsRepository(
         newsApiService: NewsApiService,
         newsDao: NewsDao,
-        application: Application
+        internetManager: InternetManager
 
     ): NewsRepository {
-        return NewsRepositoryImpl(newsApiService, newsDao, application)
+        return NewsRepositoryImpl(newsApiService, newsDao, internetManager)
 
     }
 }

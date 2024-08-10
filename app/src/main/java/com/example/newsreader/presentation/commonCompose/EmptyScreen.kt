@@ -1,4 +1,5 @@
 package com.example.newsreader.presentation.commonCompose
+
 import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.animation.core.tween
@@ -32,17 +33,17 @@ import java.net.ConnectException
 import java.net.SocketTimeoutException
 
 @Composable
-fun EmptyScreen(error: LoadState.Error? = null) {
+fun EmptyScreen(error: String? = null) {
 
     var message by remember {
-        mutableStateOf(parseErrorMessage(error = error))
+        mutableStateOf(error)
     }
 
     var icon by remember {
         mutableStateOf(R.drawable.ic_network_error)
     }
 
-    if (error == null){
+    if (error == null) {
         message = "You have not saved news so far !"
         icon = R.drawable.ic_search_document
     }
@@ -60,7 +61,8 @@ fun EmptyScreen(error: LoadState.Error? = null) {
         startAnimation = true
     }
 
-    EmptyContent(alphaAnim = alphaAnimation, message = message, iconId = icon)
+    EmptyContent(alphaAnim = alphaAnimation, message = message ?: "", iconId = icon)
+
 
 }
 
@@ -91,25 +93,10 @@ fun EmptyContent(alphaAnim: Float, message: String, iconId: Int) {
 }
 
 
-fun parseErrorMessage(error: LoadState.Error?): String {
-    return when (error?.error) {
-        is SocketTimeoutException -> {
-            "Server Unavailable."
-        }
-
-        is ConnectException -> {
-            "Internet Unavailable."
-        }
-
-        else -> {
-            "Unknown Error."
-        }
-    }
-}
 
 @Preview(showBackground = true)
 @Preview(showBackground = true, uiMode = UI_MODE_NIGHT_YES)
 @Composable
 fun EmptyScreenPreview() {
-    EmptyContent(alphaAnim = 0.3f, message = "Internet Unavailable.",R.drawable.ic_network_error)
+    EmptyContent(alphaAnim = 0.3f, message = "Internet Unavailable.", R.drawable.ic_network_error)
 }

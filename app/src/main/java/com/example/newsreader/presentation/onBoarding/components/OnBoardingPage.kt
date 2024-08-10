@@ -35,7 +35,7 @@ fun OnBoardingPage(
                 .fillMaxWidth()
                 .fillMaxHeight(0.6f),
             contentScale = ContentScale.Crop,
-            painter = painterResource(id = page.image), contentDescription = "Image-BackGround"
+            painter = painterResource(id = page.image), contentDescription = "Image-Background"
         )
         Spacer(modifier = Modifier.height(MediumPadding1))
         Text(

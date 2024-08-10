@@ -14,31 +14,31 @@ class NewHomeViewModel @Inject constructor(
     private val getNewsUseCase: GetNewsUseCase
 
 ) : ViewModel() {
-
-
-    private val _viewState = MutableStateFlow(NewsHomeStat())
-    val viewState: StateFlow<NewsHomeStat> = _viewState
+    private val _viewState = MutableStateFlow(NewsHomeState())
+    val viewState: StateFlow<NewsHomeState> = _viewState
 
     init {
         handleIntent(NewsHomeIntent.LoadArticles)
     }
+
     fun handleIntent(intent: NewsHomeIntent) {
         when (intent) {
             NewsHomeIntent.LoadArticles -> getArticleListings()
-            is NewsHomeIntent.SelectArticle -> TODO()
         }
     }
+
 
     private fun getArticleListings(
         query: String = "bitcoin",
     ) = viewModelScope.launch {
-        _viewState.value = NewsHomeStat(isLoading = true)
+        _viewState.value = _viewState.value.copy(isLoading = true)
         try {
             val articles = getNewsUseCase.invoke(query)
-            _viewState.value = NewsHomeStat(articles = articles)
+            _viewState.value = _viewState.value.copy(isLoading = false, articles = articles)
         } catch (e: Exception) {
-            _viewState.value = NewsHomeStat(error = e.message)
+            _viewState.value = _viewState.value.copy(isLoading = false, error = e.message)
         }
 
     }
+
 }

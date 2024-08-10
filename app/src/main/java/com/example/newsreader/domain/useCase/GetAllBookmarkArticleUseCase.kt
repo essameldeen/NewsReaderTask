@@ -6,11 +6,9 @@ import dagger.hilt.android.scopes.ViewModelScoped
 import javax.inject.Inject
 
 @ViewModelScoped
-class UnBookMarkUseCase @Inject constructor(
+class GetAllBookmarkArticleUseCase @Inject constructor(
     private val repository: NewsRepository
 ) {
+    suspend operator fun invoke(): List<Article> = repository.getAllBookmarkedArticles()
 
-    suspend operator fun invoke(article:Article){
-        repository.unBookMarkArticle(article)
-    }
 }

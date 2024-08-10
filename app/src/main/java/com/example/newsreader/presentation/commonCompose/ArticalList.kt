@@ -10,7 +10,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.paging.compose.LazyPagingItems
 import com.example.newsreader.domain.models.Article
-import com.example.newsreader.domain.models.ArticleListing
 import com.example.newsreader.utils.Dimens.ExtraSmallPadding2
 import com.example.newsreader.utils.Dimens.MediumPadding1
 import com.example.newsreader.utils.Dimens.MediumPadding2
@@ -38,28 +37,6 @@ fun ArticleList(
     }
 
 }
-
-
-@Composable
-fun ArticleList(
-    modifier: Modifier = Modifier,
-    articles: LazyPagingItems<Article>,
-    onClick: (Article) -> Unit
-) {
-        LazyColumn(
-            modifier = modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.spacedBy(MediumPadding1),
-            contentPadding = PaddingValues(ExtraSmallPadding2)
-        ) {
-            items(articles.itemCount) {
-                articles[it]?.let { article ->
-                    ArticleCard(article = article, onClick = { onClick(article) })
-                }
-            }
-
-        }
-}
-
 
 
 @Composable

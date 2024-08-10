@@ -15,7 +15,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navigation
 import com.example.newsreader.R
+import com.example.newsreader.presentation.bookMark.BookMarkScreen
+import com.example.newsreader.presentation.bookMark.BookMarkViewModel
 import com.example.newsreader.presentation.navigation.Route
 import com.example.newsreader.presentation.newsDetails.DetailsIntent
 import com.example.newsreader.presentation.newsDetails.NewsDetailsScreen
@@ -88,14 +91,14 @@ fun NewsNavigatorScreen() {
                 NewsHomeScreen(viewModel, navigateToSearch = {
                     navigateToTab(navController, Route.SearchScreen.route)
                 }, navigateToDetails = { id ->
-                    navigateToDetails(navController,id)
+                    navigateToDetails(navController, id)
                 })
             }
 
             composable(route = Route.SearchScreen.route) {
                 val viewModel: SearchViewModel = hiltViewModel()
-                SearchScreen(viewModel = viewModel) {id->
-                    navigateToDetails(navController,id)
+                SearchScreen(viewModel = viewModel) { id ->
+                    navigateToDetails(navController, id)
                 }
             }
             composable(route = Route.DetailsScreen.route) {
@@ -109,6 +112,17 @@ fun NewsNavigatorScreen() {
                     }
 
 
+            }
+            navigation(
+                route = Route.NewsNavigation.route,
+                startDestination = Route.BookMarkScreen.route
+            ) {
+                composable(route = Route.BookMarkScreen.route) {
+                    val viewModel: BookMarkViewModel = hiltViewModel()
+                    BookMarkScreen(viewModel) { articleId ->
+                        navigateToDetails(navController, articleId)
+                    }
+                }
             }
 
 
@@ -128,6 +142,7 @@ fun navigateToTab(navController: NavController, route: String) {
         }
     }
 }
+
 private fun navigateToDetails(navController: NavController, article: String) {
     navController.currentBackStackEntry?.savedStateHandle?.set("articleId", article)
     navController.navigate(Route.DetailsScreen.route)
