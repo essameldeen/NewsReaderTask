@@ -1,5 +1,6 @@
 package com.example.newsreader.presentation.newsNavigator
 
+import NewsHomeScreen
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -24,7 +25,6 @@ import com.example.newsreader.presentation.newsDetails.DetailsIntent
 import com.example.newsreader.presentation.newsDetails.NewsDetailsScreen
 import com.example.newsreader.presentation.newsDetails.NewsDetailsViewModel
 import com.example.newsreader.presentation.newsHome.NewHomeViewModel
-import com.example.newsreader.presentation.newsHome.NewsHomeScreen
 import com.example.newsreader.presentation.newsNavigator.components.BottomNavigationItem
 import com.example.newsreader.presentation.newsNavigator.components.NewsBottomNavigation
 import com.example.newsreader.presentation.search.SearchScreen

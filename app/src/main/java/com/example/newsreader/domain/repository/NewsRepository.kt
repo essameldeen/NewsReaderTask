@@ -4,16 +4,13 @@ import com.example.newsreader.domain.models.Article
 
 interface NewsRepository {
     suspend fun getNews(
-        searchQuery: String
+        searchQuery: String? = null
     ): List<Article>
 
     suspend fun getArticleDetailsById(
         id: String
     ): Article
 
-    suspend fun searchForNews(
-        searchQuery: String
-    ): List<Article>
 
     suspend fun getAllBookmarkedArticles(): List<Article>
 

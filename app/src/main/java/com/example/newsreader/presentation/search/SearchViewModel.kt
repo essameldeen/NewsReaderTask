@@ -3,7 +3,7 @@ package com.example.newsreader.presentation.search
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.newsreader.domain.useCase.SearchNewsUseCase
+import com.example.newsreader.domain.useCase.GetNewsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.FlowPreview
@@ -19,7 +19,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SearchViewModel @Inject constructor(
-    private val searchNewsUseCase: SearchNewsUseCase
+    private val getNewsUseCase: GetNewsUseCase
 ) : ViewModel() {
 
     private val _viewState = MutableStateFlow(SearchState())
@@ -34,7 +34,7 @@ class SearchViewModel @Inject constructor(
         .flatMapLatest { query ->
             flow {
                 try {
-                    val articles = searchNewsUseCase.invoke(query)
+                    val articles = getNewsUseCase.invoke(query)
                     emit(articles)
                 } catch (e: Exception) {
                     emit(emptyList())

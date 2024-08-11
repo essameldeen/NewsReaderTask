@@ -1,4 +1,5 @@
-package com.example.newsreader.presentation.newsHome
+import com.example.newsreader.presentation.newsHome.NewHomeViewModel
+
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Column

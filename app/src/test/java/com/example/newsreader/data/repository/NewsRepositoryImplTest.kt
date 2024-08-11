@@ -7,7 +7,7 @@ import com.example.newsreader.data.dataSource.remote.response.ArticleDto
 import com.example.newsreader.data.dataSource.remote.response.NewsResponse
 import com.example.newsreader.data.dataSource.remote.response.Source
 import com.example.newsreader.core.manager.InternetManager
-import com.example.newsreader.data.mapper.ArticleEntity
+import com.example.newsreader.data.mapper.toArticleEntity
 import com.example.newsreader.data.mapper.toDomainModel
 import com.example.newsreader.data.mapper.toEntity
 import com.example.newsreader.domain.models.Article
@@ -264,7 +264,7 @@ class NewsRepositoryImplTest {
             1,
             isBookmarked = true
         )
-        val articleEntity = article.ArticleEntity()
+        val articleEntity = article.toArticleEntity()
 
         repository.bookMarkArticle(article)
 
@@ -285,7 +285,7 @@ class NewsRepositoryImplTest {
             1,
             isBookmarked = false
         )
-        val articleEntity = article.ArticleEntity()
+        val articleEntity = article.toArticleEntity()
 
         repository.unBookMarkArticle(article)
 

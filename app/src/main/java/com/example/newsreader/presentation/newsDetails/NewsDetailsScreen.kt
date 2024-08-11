@@ -51,7 +51,7 @@ fun NewsDetailsScreen(
         viewState.article != null -> {
             DetailsArticle(
                 article = viewState.article,
-                isBookMarked = viewState.isBookmarked,
+                isBookMarked = viewState.article!!.isBookmarked ,
                 context,
                 navigateUp,
                 viewModel::handleIntent
