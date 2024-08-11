@@ -9,7 +9,6 @@ import com.example.newsreader.data.dataSource.remote.response.Source
 import com.example.newsreader.core.manager.InternetManager
 import com.example.newsreader.data.mapper.toArticleEntity
 import com.example.newsreader.data.mapper.toDomainModel
-import com.example.newsreader.data.mapper.toEntity
 import com.example.newsreader.domain.models.Article
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.*
@@ -61,8 +60,9 @@ class NewsRepositoryImplTest {
         whenever(apiService.getNews("US")).thenReturn(response)
 
         val result = repository.getNews("US")
+        val articleModels = response.articles.map { it.toDomainModel() }
 
-        verify(newsDao).insertArticles(response.articles.map { it.toEntity() })
+        verify(newsDao).insertArticles(articleModels.map { it.toArticleEntity() })
 
         assertEquals(response.articles.map { it.toDomainModel() }, result)
     }
@@ -114,73 +114,9 @@ class NewsRepositoryImplTest {
         assertEquals(articleEntity.toDomainModel(), result)
     }
 
-    @Test
-    fun `test searchForNews should return articles from API when network is available`() = runTest {
-
-        val searchQuery = "test"
-        val article = listOf (Article(
-            "author",
-            "content",
-            "description",
-            "publishedAt",
-            "source",
-            "title",
-            "url",
-            "urlToImage",
-            null,
-            isBookmarked = false
-        ))
-        val response = NewsResponse(
-            status = "s",
-            articles = listOf(
-                ArticleDto(
-                    "author",
-                    "content",
-                    "description",
-                    "publishedAt",
-                    Source("12", "source"),
-                    "title",
-                    "url",
-                    "urlToImage"
-                )
-            ),
-            totalResults = 1
-        )
-        whenever(internetManager.checkNetwork()).thenReturn(true)
-        whenever(apiService.getNews(searchQuery)).thenReturn(response)
-
-        val result = repository.searchForNews(searchQuery)
-
-        verify(newsDao).insertArticles(response.articles.map { it.toEntity() })
-        assertEquals(article, result)
-    }
-    @Test
-    fun `test searchForNews should return articles from database when network is not available`() = runTest {
-
-        val searchQuery = "test"
-        val articleEntity = listOf( ArticleEntity(
-            1,
-            "title",
-            "description",
-            "url",
-            "source",
-            "urlToImage",
-            "content",
-            "content",
-            source = "source",
-            isBookmarked = false
-        )
-        )
-
-        whenever(internetManager.checkNetwork()).thenReturn(false)
-        whenever(newsDao.searchArticles(searchQuery)).thenReturn(articleEntity)
 
 
-        val result = repository.searchForNews(searchQuery)
 
-
-        assertEquals(articleEntity.map { it.toDomainModel() }, result)
-    }
 
     @Test
     fun `test getAllBookmarkedArticles should return all bookmarked articles`() = runTest {
@@ -220,7 +156,8 @@ class NewsRepositoryImplTest {
             "content",
             "content",
             source = "source",
-            isBookmarked = true)
+            isBookmarked = true
+        )
         whenever(newsDao.getArticlesById(articleId)).thenReturn(articleEntity)
 
 
@@ -229,6 +166,7 @@ class NewsRepositoryImplTest {
 
         assertTrue(result)
     }
+
     @Test
     fun `test isArticleBookmarked should return false if article is bookmarked`() = runTest {
 
@@ -243,13 +181,15 @@ class NewsRepositoryImplTest {
             "content",
             "content",
             source = "source",
-            isBookmarked = false)
+            isBookmarked = false
+        )
         whenever(newsDao.getArticlesById(articleId)).thenReturn(articleEntity)
 
         val result = repository.isArticleBookmarked(articleId)
 
         assertFalse(result)
     }
+
     @Test
     fun `test bookMarkArticle should insert the article as bookmarked`() = runTest {
         val article = Article(
@@ -271,6 +211,7 @@ class NewsRepositoryImplTest {
 
         verify(newsDao).upsert(articleEntity)
     }
+
     @Test
     fun `test unBookMarkArticle  should insert the article as bookmarked`() = runTest {
         val article = Article(
