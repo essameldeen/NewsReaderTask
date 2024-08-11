@@ -5,8 +5,8 @@ import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
 
-@ViewModelScoped
-class ReadAppEntryUseCase @Inject constructor(
+
+class ReadAppEntryUseCase @Inject constructor (
     private val localUserManager: LocalUserManager
 ) {
     operator fun invoke(): Flow<Boolean> {

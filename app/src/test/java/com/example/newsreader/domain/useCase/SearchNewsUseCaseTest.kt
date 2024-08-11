@@ -26,9 +26,7 @@ class SearchNewsUseCaseTest{
         val newArticles = listOf(mockk<Article>(), mockk<Article>())
         coEvery { repository.searchForNews("us") } returns newArticles
 
-
         val result = searchNewsUseCase.invoke("us")
-
 
         coVerify { repository.searchForNews("us") }
         assertEquals(newArticles, result)

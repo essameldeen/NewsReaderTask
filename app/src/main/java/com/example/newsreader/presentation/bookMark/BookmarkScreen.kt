@@ -15,9 +15,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.text.font.FontWeight
 import com.example.newsreader.R
-import com.example.newsreader.presentation.commonCompose.ArticleList
-import com.example.newsreader.presentation.commonCompose.ShimmerEffect
-import com.example.newsreader.utils.Dimens.MediumPadding1
+import com.example.newsreader.core.commonViews.ItemList
+import com.example.newsreader.core.commonViews.ShimmerEffect
+import com.example.newsreader.core.utils.Dimens.MediumPadding1
 
 
 @Composable
@@ -44,7 +44,7 @@ fun BookMarkScreen(
 
         when {
             viewState.bookmarkedArticles.isNotEmpty() -> {
-                ArticleList(articles = viewState.bookmarkedArticles) { article ->
+                ItemList(articles = viewState.bookmarkedArticles) { article ->
                     navigateToDetails(article.urlToImage)
                 }
             }

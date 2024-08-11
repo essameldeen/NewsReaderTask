@@ -1,4 +1,4 @@
-package com.example.newsreader.utils
+package com.example.newsreader.core.utils
 
 object NewsConstant {
     const val USER_SETTINGS = "userSettings"

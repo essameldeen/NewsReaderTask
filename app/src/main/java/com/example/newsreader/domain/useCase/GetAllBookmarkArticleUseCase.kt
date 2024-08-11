@@ -5,7 +5,7 @@ import com.example.newsreader.domain.repository.NewsRepository
 import dagger.hilt.android.scopes.ViewModelScoped
 import javax.inject.Inject
 
-@ViewModelScoped
+
 class GetAllBookmarkArticleUseCase @Inject constructor(
     private val repository: NewsRepository
 ) {

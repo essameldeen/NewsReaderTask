@@ -15,11 +15,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.newsreader.R
-import com.example.newsreader.presentation.commonCompose.ArticleList
-import com.example.newsreader.presentation.commonCompose.EmptyScreen
-import com.example.newsreader.presentation.commonCompose.SearchBar
-import com.example.newsreader.presentation.commonCompose.ShimmerEffect
-import com.example.newsreader.utils.Dimens.MediumPadding1
+import com.example.newsreader.core.commonViews.ItemList
+import com.example.newsreader.core.commonViews.EmptyScreen
+import com.example.newsreader.core.commonViews.SearchBar
+import com.example.newsreader.core.commonViews.ShimmerEffect
+import com.example.newsreader.core.utils.Dimens.MediumPadding1
 
 @Composable
 fun NewsHomeScreen(
@@ -61,7 +61,7 @@ fun NewsHomeScreen(
             }
 
             viewState.articles != null -> {
-                ArticleList(
+                ItemList(
                     modifier = Modifier.padding(horizontal = MediumPadding1),
                     articles = viewState.articles!!
                 ) { article ->

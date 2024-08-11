@@ -1,4 +1,4 @@
-package com.example.newsreader.utils
+package com.example.newsreader.core.utils
 
 sealed class Resource<T>(var data: T? = null, val message: String? = null) {
     class Success<T>(data: T?): Resource<T>(data)

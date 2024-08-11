@@ -1,4 +1,4 @@
-package com.example.newsreader.data.manager
+package com.example.newsreader.data.dataSource.local
 
 import android.content.Context
 import androidx.datastore.core.DataStore
@@ -7,13 +7,15 @@ import androidx.datastore.preferences.core.booleanPreferencesKey
 import androidx.datastore.preferences.core.edit
 import androidx.datastore.preferences.preferencesDataStore
 import com.example.newsreader.domain.manager.LocalUserManager
-import com.example.newsreader.utils.NewsConstant
-import com.example.newsreader.utils.NewsConstant.USER_SETTINGS
+import com.example.newsreader.core.utils.NewsConstant
+import com.example.newsreader.core.utils.NewsConstant.USER_SETTINGS
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
-class LocalUserManagerImpl(
-    private val context: Context
+class LocalUserManagerImpl @Inject constructor(
+    @ApplicationContext private  val  context: Context
 ) : LocalUserManager {
     override suspend fun saveAppEntry() {
         context.dataStore.edit { settings ->

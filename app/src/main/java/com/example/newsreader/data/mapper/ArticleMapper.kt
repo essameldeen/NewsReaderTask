@@ -1,6 +1,6 @@
 package com.example.newsreader.data.mapper
 
-import com.example.newsreader.data.dataSource.local.ArticleEntity
+import com.example.newsreader.data.entity.ArticleEntity
 import com.example.newsreader.data.dataSource.remote.response.ArticleDto
 import com.example.newsreader.domain.models.Article
 

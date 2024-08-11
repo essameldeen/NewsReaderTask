@@ -123,7 +123,6 @@ dependencies {
     implementation(libs.androidx.room.ktx)
 
     //testing
-
     testImplementation(libs.kotlinx.coroutines.test)
     testImplementation(libs.mockk)
     testImplementation(libs.androidx.core)
@@ -131,4 +130,5 @@ dependencies {
     testImplementation(libs.mockito.kotlin)
     testImplementation(libs.mockito.core)
     testImplementation(libs.mockito.inline)
+    testImplementation("app.cash.turbine:turbine:1.1.0")
 }

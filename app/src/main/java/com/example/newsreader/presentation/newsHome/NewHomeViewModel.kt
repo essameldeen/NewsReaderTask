@@ -28,7 +28,7 @@ class NewHomeViewModel @Inject constructor(
     }
 
 
-    private fun getArticleListings(
+     fun getArticleListings(
         query: String = "bitcoin",
     ) = viewModelScope.launch {
         _viewState.value = _viewState.value.copy(isLoading = true)

@@ -20,8 +20,8 @@ import com.example.newsreader.R
 import com.example.newsreader.domain.models.Page
 import com.example.newsreader.domain.models.pages
 import com.example.newsreader.ui.theme.NewsReaderTheme
-import com.example.newsreader.utils.Dimens.MediumPadding1
-import com.example.newsreader.utils.Dimens.MediumPadding2
+import com.example.newsreader.core.utils.Dimens.MediumPadding1
+import com.example.newsreader.core.utils.Dimens.MediumPadding2
 
 @Composable
 fun OnBoardingPage(

@@ -25,13 +25,13 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.newsreader.R
 import com.example.newsreader.domain.models.Article
-import com.example.newsreader.presentation.commonCompose.EmptyScreen
-import com.example.newsreader.presentation.commonCompose.ShimmerEffect
+import com.example.newsreader.core.commonViews.EmptyScreen
+import com.example.newsreader.core.commonViews.ShimmerEffect
 import com.example.newsreader.presentation.newsDetails.component.DetailsTopBar
-import com.example.newsreader.utils.Dimens.ArticleImageHeight
-import com.example.newsreader.utils.Dimens.MediumPadding1
-import com.example.newsreader.utils.NewsConstant.NOT_AVAILABLE
-import com.example.newsreader.utils.NewsConstant.TEXT_PLAIN
+import com.example.newsreader.core.utils.Dimens.ArticleImageHeight
+import com.example.newsreader.core.utils.Dimens.MediumPadding1
+import com.example.newsreader.core.utils.NewsConstant.NOT_AVAILABLE
+import com.example.newsreader.core.utils.NewsConstant.TEXT_PLAIN
 
 @Composable
 fun NewsDetailsScreen(

@@ -1,17 +1,16 @@
 package com.example.newsreader.data.repository
 
-import com.example.newsreader.data.dataSource.local.ArticleEntity
+import com.example.newsreader.data.entity.ArticleEntity
 import com.example.newsreader.data.dataSource.local.NewsDao
 import com.example.newsreader.data.dataSource.remote.api.NewsApiService
 import com.example.newsreader.data.dataSource.remote.response.ArticleDto
 import com.example.newsreader.data.dataSource.remote.response.NewsResponse
 import com.example.newsreader.data.dataSource.remote.response.Source
-import com.example.newsreader.data.manager.InternetManager
+import com.example.newsreader.core.manager.InternetManager
 import com.example.newsreader.data.mapper.ArticleEntity
 import com.example.newsreader.data.mapper.toDomainModel
 import com.example.newsreader.data.mapper.toEntity
 import com.example.newsreader.domain.models.Article
-import io.mockk.mockk
 import kotlinx.coroutines.test.runTest
 import org.junit.Assert.*
 import org.junit.Before
@@ -170,7 +169,8 @@ class NewsRepositoryImplTest {
             "content",
             source = "source",
             isBookmarked = false
-        ))
+        )
+        )
 
         whenever(internetManager.checkNetwork()).thenReturn(false)
         whenever(newsDao.searchArticles(searchQuery)).thenReturn(articleEntity)

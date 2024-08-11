@@ -1,22 +1,18 @@
-package com.example.newsreader.presentation.commonCompose
+package com.example.newsreader.core.commonViews
 
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.paging.compose.LazyPagingItems
 import com.example.newsreader.domain.models.Article
-import com.example.newsreader.utils.Dimens.ExtraSmallPadding2
-import com.example.newsreader.utils.Dimens.MediumPadding1
-import com.example.newsreader.utils.Dimens.MediumPadding2
+import com.example.newsreader.core.utils.Dimens.ExtraSmallPadding2
+import com.example.newsreader.core.utils.Dimens.MediumPadding1
 
 
 @Composable
-fun ArticleList(
+fun ItemList(
     modifier: Modifier = Modifier,
     articles: List<Article>,
     onClick: (Article) -> Unit
@@ -30,7 +26,7 @@ fun ArticleList(
     ) {
         items(articles.size) {
             articles[it].let { article ->
-                ArticleCard(article = article, onClick = { onClick(article) })
+                CardComponent(article = article, onClick = { onClick(article) })
             }
         }
 
@@ -39,11 +35,3 @@ fun ArticleList(
 }
 
 
-@Composable
- fun ShimmerEffect() {
-    Column(verticalArrangement = Arrangement.spacedBy(MediumPadding2)) {
-            ArticleCardShimmerEffect(
-                modifier = Modifier.padding(horizontal = MediumPadding2)
-            )
-    }
-}

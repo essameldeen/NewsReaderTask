@@ -1,4 +1,4 @@
-package com.example.newsreader.presentation.commonCompose
+package com.example.newsreader.core.commonViews
 
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animateFloat
@@ -23,8 +23,8 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
 import com.example.newsreader.R
-import com.example.newsreader.utils.Dimens
-import com.example.newsreader.utils.Dimens.MediumPadding1
+import com.example.newsreader.core.utils.Dimens
+import com.example.newsreader.core.utils.Dimens.MediumPadding1
 
 fun Modifier.shimmerEffect() = composed {
     val transition = rememberInfiniteTransition(label = "")
@@ -35,6 +35,14 @@ fun Modifier.shimmerEffect() = composed {
         ), label = ""
     ).value
     background(color = colorResource(id = R.color.shimmer).copy(alpha = alpha))
+}
+@Composable
+fun ShimmerEffect() {
+    Column(verticalArrangement = Arrangement.spacedBy(Dimens.MediumPadding2)) {
+        ArticleCardShimmerEffect(
+            modifier = Modifier.padding(horizontal = Dimens.MediumPadding2)
+        )
+    }
 }
 @Composable
 fun ArticleCardShimmerEffect(modifier: Modifier = Modifier) {
@@ -75,3 +83,4 @@ fun ArticleCardShimmerEffect(modifier: Modifier = Modifier) {
         }
     }
 }
+

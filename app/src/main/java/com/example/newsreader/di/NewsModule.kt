@@ -1,26 +1,23 @@
 package com.example.newsreader.di
 
 import android.app.Application
+import android.content.Context
 import androidx.room.Room
 import com.example.newsreader.data.dataSource.local.NewsDao
-import com.example.newsreader.data.dataSource.local.NewsDataBase
+import com.example.newsreader.core.db.NewsDataBase
 import com.example.newsreader.data.dataSource.remote.api.NewsApiService
-import com.example.newsreader.data.manager.InternetManager
-import com.example.newsreader.data.manager.InternetManagerImpl
-import com.example.newsreader.data.manager.LocalUserManagerImpl
+import com.example.newsreader.core.manager.InternetManager
+import com.example.newsreader.core.manager.InternetManagerImpl
+import com.example.newsreader.data.dataSource.local.LocalUserManagerImpl
 import com.example.newsreader.data.repository.NewsRepositoryImpl
 import com.example.newsreader.domain.manager.LocalUserManager
 import com.example.newsreader.domain.repository.NewsRepository
-import com.example.newsreader.domain.useCase.BookMarkUseCase
-import com.example.newsreader.domain.useCase.GetNewsByIdUseCase
-import com.example.newsreader.domain.useCase.GetNewsUseCase
-import com.example.newsreader.domain.useCase.UnBookMarkUseCase
-import com.example.newsreader.utils.NewsConstant.BASE_URL
-import com.example.newsreader.utils.NewsConstant.NEWS_DATABASE_NAME
+import com.example.newsreader.core.utils.NewsConstant.BASE_URL
+import com.example.newsreader.core.utils.NewsConstant.NEWS_DATABASE_NAME
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ViewModelComponent
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -33,13 +30,13 @@ object NewsDomainModule {
 
     @Provides
     @Singleton
-    fun provideLocalUserManager(application: Application): LocalUserManager =
-        LocalUserManagerImpl(application)
+    fun provideLocalUserManager(@ApplicationContext applicationContext: Context): LocalUserManager =
+        LocalUserManagerImpl(applicationContext)
 
     @Provides
     @Singleton
-    fun provideInternetManager(application: Application): InternetManager =
-        InternetManagerImpl(application)
+    fun provideInternetManager(@ApplicationContext applicationContext: Context): InternetManager =
+        InternetManagerImpl(applicationContext)
 
 
     @Provides
@@ -79,30 +76,5 @@ object NewsDomainModule {
     ): NewsRepository {
         return NewsRepositoryImpl(newsApiService, newsDao, internetManager)
 
-    }
-}
-
-@Module
-@InstallIn(ViewModelComponent::class)
-class NewsModuleDomain {
-
-    @Provides
-    fun provideGetNewsUseCase(newsRepository: NewsRepository): GetNewsUseCase {
-        return GetNewsUseCase(newsRepository)
-    }
-
-    @Provides
-    fun provideGetNewsByIdUseCase(newsRepository: NewsRepository): GetNewsByIdUseCase {
-        return GetNewsByIdUseCase(newsRepository)
-    }
-
-    @Provides
-    fun provideBookMarkNewsUseCase(newsRepository: NewsRepository): BookMarkUseCase {
-        return BookMarkUseCase(newsRepository)
-    }
-
-    @Provides
-    fun provideUnBookMarkNewsUseCase(newsRepository: NewsRepository): UnBookMarkUseCase {
-        return UnBookMarkUseCase(newsRepository)
     }
 }

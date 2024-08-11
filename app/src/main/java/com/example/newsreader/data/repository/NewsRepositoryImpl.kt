@@ -2,7 +2,7 @@ package com.example.newsreader.data.repository
 
 import com.example.newsreader.data.dataSource.local.NewsDao
 import com.example.newsreader.data.dataSource.remote.api.NewsApiService
-import com.example.newsreader.data.manager.InternetManager
+import com.example.newsreader.core.manager.InternetManager
 import com.example.newsreader.data.mapper.ArticleEntity
 import com.example.newsreader.data.mapper.toDomainModel
 import com.example.newsreader.data.mapper.toEntity

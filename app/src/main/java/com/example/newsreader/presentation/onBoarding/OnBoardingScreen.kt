@@ -19,15 +19,15 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import com.example.newsreader.domain.models.pages
-import com.example.newsreader.presentation.commonCompose.NewsButton
-import com.example.newsreader.presentation.commonCompose.NewsTextButton
+import com.example.newsreader.core.commonViews.NewsButton
+import com.example.newsreader.core.commonViews.NewsTextButton
 import com.example.newsreader.presentation.onBoarding.components.OnBoardingPage
 import com.example.newsreader.presentation.onBoarding.components.PageIndicator
-import com.example.newsreader.utils.Dimens.MediumPadding2
-import com.example.newsreader.utils.Dimens.PageIndicatorWidth
-import com.example.newsreader.utils.NewsConstant.BACK
-import com.example.newsreader.utils.NewsConstant.GET_START
-import com.example.newsreader.utils.NewsConstant.NEXT
+import com.example.newsreader.core.utils.Dimens.MediumPadding2
+import com.example.newsreader.core.utils.Dimens.PageIndicatorWidth
+import com.example.newsreader.core.utils.NewsConstant.BACK
+import com.example.newsreader.core.utils.NewsConstant.GET_START
+import com.example.newsreader.core.utils.NewsConstant.NEXT
 import kotlinx.coroutines.launch
 
 

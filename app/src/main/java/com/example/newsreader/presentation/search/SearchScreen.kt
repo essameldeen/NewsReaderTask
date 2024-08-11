@@ -6,19 +6,15 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.paging.compose.collectAsLazyPagingItems
-import androidx.room.util.query
-import com.example.newsreader.domain.models.Article
-import com.example.newsreader.presentation.commonCompose.ArticleList
-import com.example.newsreader.presentation.commonCompose.EmptyScreen
-import com.example.newsreader.presentation.commonCompose.SearchBar
-import com.example.newsreader.presentation.commonCompose.ShimmerEffect
-import com.example.newsreader.utils.Dimens.MediumPadding1
+import com.example.newsreader.core.commonViews.ItemList
+import com.example.newsreader.core.commonViews.EmptyScreen
+import com.example.newsreader.core.commonViews.SearchBar
+import com.example.newsreader.core.commonViews.ShimmerEffect
+import com.example.newsreader.core.utils.Dimens.MediumPadding1
 
 
 @Composable
@@ -56,7 +52,7 @@ fun SearchScreen(
             }
 
             viewState.articles != null -> {
-                ArticleList(
+                ItemList(
                     modifier = Modifier.padding(horizontal = MediumPadding1),
                     articles = viewState.articles!!
                 ) { article ->

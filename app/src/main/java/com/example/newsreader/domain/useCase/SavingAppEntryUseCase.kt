@@ -5,7 +5,7 @@ import dagger.hilt.android.scopes.ViewModelScoped
 import javax.inject.Inject
 
 
-@ViewModelScoped
+
 class SavingAppEntryUseCase @Inject constructor(
     private val localUserManager: LocalUserManager
 ) {

@@ -1,4 +1,4 @@
-package com.example.newsreader.presentation.commonCompose
+package com.example.newsreader.core.commonViews
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
@@ -26,14 +26,14 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.example.newsreader.R
 import com.example.newsreader.domain.models.Article
-import com.example.newsreader.utils.Dimens.ExtraSmallPadding
-import com.example.newsreader.utils.Dimens.ExtraSmallPadding2
-import com.example.newsreader.utils.Dimens.SmallIconSize
-import com.example.newsreader.utils.Dimens.articleCardSize
+import com.example.newsreader.core.utils.Dimens.ExtraSmallPadding
+import com.example.newsreader.core.utils.Dimens.ExtraSmallPadding2
+import com.example.newsreader.core.utils.Dimens.SmallIconSize
+import com.example.newsreader.core.utils.Dimens.articleCardSize
 
 
 @Composable
-fun ArticleCard(
+fun CardComponent(
     modifier: Modifier = Modifier, article: Article, onClick: () -> Unit
 ) {
     val context = LocalContext.current

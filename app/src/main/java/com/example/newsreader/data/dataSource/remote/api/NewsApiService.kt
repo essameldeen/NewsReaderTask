@@ -3,7 +3,7 @@ package com.example.newsreader.data.dataSource.remote.api
 
 import com.example.newsreader.BuildConfig
 import com.example.newsreader.data.dataSource.remote.response.NewsResponse
-import com.example.newsreader.utils.NewsConstant.API_KEY
+import com.example.newsreader.core.utils.NewsConstant.API_KEY
 import retrofit2.http.GET
 import retrofit2.http.Query
 

@@ -18,12 +18,7 @@ class SaveAppEntryUseCaseTest {
     }
     @Test
     fun `invoke should return flow of boolean from localUserManager`() = runTest {
-
-
-        // Act
         useCase.invoke()
-
-        // Assert
         coVerify { userManager.saveAppEntry() }
 
     }

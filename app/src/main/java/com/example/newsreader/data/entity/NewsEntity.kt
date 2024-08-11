@@ -1,4 +1,4 @@
-package com.example.newsreader.data.dataSource.local
+package com.example.newsreader.data.entity
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

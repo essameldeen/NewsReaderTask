@@ -19,8 +19,8 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.example.newsreader.R
-import com.example.newsreader.utils.Dimens.ExtraSmallPadding2
-import com.example.newsreader.utils.Dimens.IconSize
+import com.example.newsreader.core.utils.Dimens.ExtraSmallPadding2
+import com.example.newsreader.core.utils.Dimens.IconSize
 
 @Composable
 fun NewsBottomNavigation(

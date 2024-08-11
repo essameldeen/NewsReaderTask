@@ -1,4 +1,4 @@
-package com.example.newsreader.utils
+package com.example.newsreader.core.utils
 
 import androidx.compose.ui.unit.dp
 

@@ -1,6 +1,4 @@
-package com.example.newsreader.presentation.commonCompose
-
-import android.content.res.Configuration
+package com.example.newsreader.core.commonViews
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -11,7 +9,6 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.newsreader.ui.theme.WhiteGray
 

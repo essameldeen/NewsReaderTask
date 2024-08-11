@@ -1,4 +1,4 @@
-package com.example.newsreader.presentation.commonCompose
+package com.example.newsreader.core.commonViews
 
 import android.content.res.Configuration
 import androidx.compose.foundation.border
@@ -29,7 +29,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.example.newsreader.R
 import com.example.newsreader.ui.theme.NewsReaderTheme
-import com.example.newsreader.utils.Dimens.IconSize
+import com.example.newsreader.core.utils.Dimens.IconSize
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
