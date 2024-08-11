@@ -56,7 +56,7 @@ fun CardComponent(
                 .height(articleCardSize)
         ) {
             Text(
-                text = article.title ?: "Title",
+                text = article.title,
                 style = MaterialTheme.typography.bodyMedium,
                 color = colorResource(
                     id = R.color.text_title
@@ -66,7 +66,7 @@ fun CardComponent(
             )
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
-                    text = article.source ?:"Source",
+                    text = article.source ,
                     style = MaterialTheme.typography.labelMedium.copy(fontWeight = FontWeight.Bold),
                     color = colorResource(
                         id = R.color.body

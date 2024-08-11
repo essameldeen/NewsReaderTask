@@ -5,6 +5,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.newsreader.domain.useCase.SearchNewsUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.debounce
@@ -24,6 +26,7 @@ class SearchViewModel @Inject constructor(
     val viewState: StateFlow<SearchState> = _viewState
 
     private val searchQuery = MutableStateFlow("")
+    @OptIn(FlowPreview::class, ExperimentalCoroutinesApi::class)
     private val searchFlow = searchQuery
         .debounce(300)
         .filter { it.isNotEmpty() }
@@ -34,7 +37,6 @@ class SearchViewModel @Inject constructor(
                     val articles = searchNewsUseCase.invoke(query)
                     emit(articles)
                 } catch (e: Exception) {
-                    // Emit an empty list and update the error state
                     emit(emptyList())
                     _viewState.value = SearchState(error = e.message)
                 }
@@ -48,7 +50,6 @@ class SearchViewModel @Inject constructor(
                 if (articles.isNotEmpty()) {
                     _viewState.value = SearchState(articles = articles)
                 } else if (_viewState.value.error == null) {
-                    // Handle the case when no articles are found and no error occurred
                     _viewState.value = SearchState(error = "No articles found.")
                 }
 
